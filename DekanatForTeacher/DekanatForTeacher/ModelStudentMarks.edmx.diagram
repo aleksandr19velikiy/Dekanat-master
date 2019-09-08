@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c9e8c5d88784a64a8c83a74f47f6051" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="dbStudentsFinalModel.AcademicRanks" Width="1.5" PointX="9" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.AssociatedSubjects" Width="1.5" PointX="11" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Courses" Width="1.5" PointX="4" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Credentials" Width="1.5" PointX="10.625" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Departments" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" FillColor="192, 64, 0" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Groups" Width="1.5" PointX="6.125" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Institutes" Width="1.5" PointX="2" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Marks" Width="1.5" PointX="11" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.MarkTypes" Width="1.5" PointX="3.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.QualificationLevels" Width="1.5" PointX="10.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Students" Width="1.5" PointX="4.375" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.StudyForms" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.SubjectInfo" Width="1.5" PointX="8" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.SubjectNames" Width="1.5" PointX="2" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="dbStudentsFinalModel.Teachers" Width="1.5" PointX="7" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Teachers_AcademicRanks" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_AssociatedSubjects_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_AssociatedSubjects_SubjectInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_AssociatedSubjects_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Courses_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Groups_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_SubjectInfo_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Credentials_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Departments_Institutes" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Teachers_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Groups_QualificationLevels" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Groups_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Groups_StudyForms" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Students_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Marks_MarkTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Marks_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_Marks_SubjectInfo" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="dbStudentsFinalModel.FK_SubjectInfo_QualificationLevels" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_SubjectInfo_StudyForms" ManuallyRouted="false" />
+        <AssociationConnector Association="dbStudentsFinalModel.FK_SubjectInfo_SubjectNames" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

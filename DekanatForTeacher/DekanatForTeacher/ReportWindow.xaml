@@ -1,0 +1,14 @@
+﻿<Window x:Class="DekanatForTeacher.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        Title="ReportWindow"
+        Height="500"
+        Width="700"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <WindowsFormsHost>
+            <rv:ReportViewer x:Name="ReportViewer" />
+        </WindowsFormsHost>
+    </Grid>
+</Window>

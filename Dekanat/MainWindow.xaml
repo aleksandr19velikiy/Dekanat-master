@@ -1,0 +1,686 @@
+﻿<Window x:Class="Dekanat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mainWindowConverters="clr-namespace:Dekanat.Converters.MainWindow"
+        Title="MainWindow" Height="500" Width="800" Background="#656565" FontFamily="Verdana" WindowState="Maximized"
+        x:Name="Window">
+    <Window.Resources>
+        <mainWindowConverters:VisibilityPathConverter x:Key="My:VisibilityPathConverter" />
+        <mainWindowConverters:ImagePathConverter x:Key="My:ImagePathConverter" />
+        <mainWindowConverters:DateFormatConverter x:Key="My:DateFormatConverter" />
+        <mainWindowConverters:IsEnabledPathConverter x:Key="My:IsEnabledPathConverter" />
+        <mainWindowConverters:BImagePathConverter x:Key="My:BImagePathConverter" />
+        <mainWindowConverters:IsEnabledPathConverter2 x:Key="My:IsEnabledPathConverter2" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#484848">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="10,0,0,0">
+                <Image Width="48"
+                       Height="48"
+                       Source="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:ImagePathConverter}, Mode=OneWay}" />
+                <TextBlock Foreground="White"
+                           FontSize="20"
+                           VerticalAlignment="Center"
+                           Margin="10,0,0,0"
+                           Text="{Binding ElementName=Window, Path=CurrentUserName, Mode=OneWay}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0">
+
+                <Button Style="{StaticResource HeaderButtonStyle}"
+                        x:Name="AddUserButton"
+                        Visibility="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:VisibilityPathConverter}, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="24" Height="24" Source="Resources/add_user.png" />
+                        <TextBlock Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0">Додати користувача</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource HeaderButtonStyle}"
+                        x:Name="SetupButton"
+                        Visibility="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:VisibilityPathConverter}, Mode=OneWay}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="24" Height="24" Source="Resources/options24.png" />
+                        <TextBlock Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0">Опції</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource HeaderButtonStyle}"
+                        x:Name="ExitButton">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="24" Height="24" Source="Resources/exit.png" />
+                        <TextBlock Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0">Вийти</TextBlock>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Foreground="White">
+                © S.Leseiko 2019. All rights reserved.
+            </TextBlock>
+        </StackPanel>
+
+        <TabControl TabStripPlacement="Left" Grid.Row="1" x:Name="MainWindowTabControl">
+            <!--Students-->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image Width="64" Height="64" Source="Resources/graduated-icon.png" />
+                        <TextBlock HorizontalAlignment="Center" FontSize="13" Foreground="White">Студенти</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Background="#656565"
+                                Orientation="Horizontal"
+                                Margin="5,5,5,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="0">
+                                <TextBlock Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                           FontSize="20">
+                                    Студенти
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1">
+                                <TextBlock Foreground="White"
+                                           Margin="50,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Інститут
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="60"
+                                          Margin="5,0,0,0"
+                                          x:Name="InstitutesComboBox" />
+                                <TextBlock Foreground="White"
+                                           Margin="25,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Група
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="180"
+                                          Margin="5,0,0,0"
+                                          x:Name="StudyGroupsComboBox" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Margin="5,0,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="0"
+                                  x:Name="StudentInfoDataGrid"
+                                  GridLinesVisibility="None"
+                                  CanUserAddRows="False"
+                                  ItemsSource="{Binding ElementName=Window, Path=Students, Mode=OneWay}"
+                                  AlternatingRowBackground="#F0F0F0"
+                                  AutoGenerateColumns="False"
+                                  CanUserReorderColumns="False"
+                                  SelectionMode="Single"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ПІБ"
+                                                    MinWidth="250"
+                                                    Binding="{Binding Path=FullName}" />
+                                <DataGridTextColumn Header="Дата народження"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=BirthDate, Converter={StaticResource My:DateFormatConverter}}" />
+                                <DataGridTextColumn Header="Адреса"
+                                                    MinWidth="200"
+                                                    Binding="{Binding Path=Address}" />
+                                <DataGridTextColumn Header="Номер моб. телефону"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=MobilePhone}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Column="1"
+                                BorderBrush="{Binding ElementName=StudentInfoDataGrid, Path=BorderBrush, Mode=OneTime}"
+                                BorderThickness="1"
+                                Margin="5,0,0,0">
+                            <StackPanel Margin="5,5,5,0"
+                                        IsEnabled="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:IsEnabledPathConverter2}}">
+                                <Button Content="Додати"
+                                        Padding="0,3,0,3"
+                                        x:Name="AddStudentButton" />
+
+                                <Button Content="Редагувати"
+                                        Padding="0,3,0,3"
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ElementName=StudentInfoDataGrid, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource My:IsEnabledPathConverter}}"
+                                        x:Name="EditStudentButton" />
+
+                                <Button Content="Видалити"
+                                        Padding="0,3,0,3"
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ElementName=StudentInfoDataGrid, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource My:IsEnabledPathConverter}}"
+                                        x:Name="DeleteStudentButton" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <!--Groups-->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image Width="64" Height="64" Source="Resources/group-icon.png" />
+                        <TextBlock HorizontalAlignment="Center" FontSize="13" Foreground="White">Групи</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Background="#656565"
+                                Orientation="Horizontal"
+                                Margin="5,5,5,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="0">
+                                <TextBlock Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                           FontSize="20">
+                                    Групи
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1">
+                                <TextBlock Foreground="White"
+                                           Margin="50,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Інститут
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="60"
+                                          Margin="5,0,0,0"
+                                          x:Name="InstitutesComboBoxTab2"
+                                          ItemsSource="{Binding ElementName=InstitutesComboBox, Path=ItemsSource}" />
+                                <TextBlock Foreground="White"
+                                           Margin="25,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Кафедра
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="300"
+                                          Margin="5,0,0,0"
+                                          x:Name="DepartmentsComboBox" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Margin="5,0,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="0"
+                                  x:Name="StudyGroupsDataGrid"
+                                  GridLinesVisibility="None"
+                                  CanUserAddRows="False"
+                                  ItemsSource="{Binding ElementName=Window, Path=Groups, Mode=OneWay}"
+                                  AlternatingRowBackground="#F0F0F0"
+                                  AutoGenerateColumns="False"
+                                  CanUserReorderColumns="False"
+                                  SelectionMode="Single"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Напрям"
+                                                    MinWidth="200"
+                                                    Binding="{Binding Path=CourseName}" />
+                                <DataGridTextColumn Header="№ групи"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=GroupNum}" />
+                                <DataGridTextColumn Header="К-сть студ."
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=GroupQuantity}" />
+                                <DataGridTextColumn Header="Кваліф. рівень"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=QualificationLevelName}" />
+                                <DataGridTextColumn Header="Ф-ма навч."
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=StudyFormName}" />
+                                <DataGridTextColumn Header="Староста"
+                                                    MinWidth="250"
+                                                    Binding="{Binding Path=ElderFullName}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Column="1"
+                                BorderBrush="{Binding ElementName=StudentInfoDataGrid, Path=BorderBrush, Mode=OneTime}"
+                                BorderThickness="1"
+                                Margin="5,0,0,0">
+                            <StackPanel Margin="5,5,5,0"
+                                        IsEnabled="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:IsEnabledPathConverter2}}">
+                                <Button Content="Додати"
+                                        Padding="0,3,0,3"
+                                        x:Name="AddGroupButton" />
+
+                                <Button Content="Редагувати"
+                                        Padding="0,3,0,3"
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ElementName=StudyGroupsDataGrid, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource My:IsEnabledPathConverter}}"
+                                        x:Name="EditGroupButton" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <!--Subjects-->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image Width="64" Height="64" Source="Resources/books.png" />
+                        <TextBlock HorizontalAlignment="Center" FontSize="13" Foreground="White">Дисципліни</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Background="#656565"
+                                Orientation="Horizontal"
+                                Margin="5,5,5,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="0">
+                                <TextBlock Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                           FontSize="20">
+                                    Дисципліни
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1">
+                                <TextBlock Foreground="White"
+                                           Margin="50,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Інститут
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="60"
+                                          Margin="5,0,0,0"
+                                          x:Name="InstitutesComboBoxTab3"
+                                          ItemsSource="{Binding ElementName=InstitutesComboBox, Path=ItemsSource}" />
+                                <TextBlock Foreground="White"
+                                           Margin="25,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Напрям
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="180"
+                                          Margin="5,0,0,0"
+                                          x:Name="CoursesComboBox" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Margin="5,0,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="0"
+                                  x:Name="SubjectInfoDataGrid"
+                                  GridLinesVisibility="None"
+                                  CanUserAddRows="False"
+                                  ItemsSource="{Binding ElementName=Window, Path=SubjectInfo, Mode=OneWay}"
+                                  AlternatingRowBackground="#F0F0F0"
+                                  AutoGenerateColumns="False"
+                                  CanUserReorderColumns="False"
+                                  SelectionMode="Single"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Назва"
+                                                    MinWidth="300"
+                                                    Binding="{Binding Path=SubjectName}" />
+                                <DataGridTextColumn Header="Кредити"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=Credits}" />
+                                <DataGridTextColumn Header="Кваліф. рівень"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=QualificationLevelName}" />
+                                <DataGridTextColumn Header="Ф-ма навч."
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=StudyFormName}" />
+                                <DataGridTextColumn Header="Дата створення"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=SubjectInfoDate, Converter={StaticResource My:DateFormatConverter}}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Column="1"
+                                BorderBrush="{Binding ElementName=StudentInfoDataGrid, Path=BorderBrush, Mode=OneTime}"
+                                BorderThickness="1"
+                                Margin="5,0,0,0">
+                            <StackPanel Margin="5,5,5,0"
+                                        IsEnabled="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:IsEnabledPathConverter2}}">
+                                <Button Content="Додати"
+                                        Padding="0,3,0,3"
+                                        x:Name="AddSubjectInfoButton" />
+
+                                <Button Content="Редагувати"
+                                        Padding="0,3,0,3"
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ElementName=SubjectInfoDataGrid, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource My:IsEnabledPathConverter}}"
+                                        x:Name="EditSubjectInfoButton" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <!--Teachers-->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image Width="64" Height="64" Source="Resources/Professor64.png" />
+                        <TextBlock HorizontalAlignment="Center" FontSize="13" Foreground="White">Викладачі</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Background="#656565"
+                                Orientation="Horizontal"
+                                Margin="5,5,5,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="0">
+                                <TextBlock Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                           FontSize="20">
+                                    Викладачі
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1">
+                                <TextBlock Foreground="White"
+                                           Margin="50,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Інститут
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="60"
+                                          Margin="5,0,0,0"
+                                          x:Name="InstitutesComboBoxTab4"
+                                          ItemsSource="{Binding ElementName=InstitutesComboBox, Path=ItemsSource}" />
+                                <TextBlock Foreground="White"
+                                           Margin="25,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Кафедра
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="300"
+                                          Margin="5,0,0,0"
+                                          x:Name="DepartmentsComboBoxTab4" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Margin="5,0,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="0"
+                                  x:Name="TeachersDataGrid"
+                                  GridLinesVisibility="None"
+                                  CanUserAddRows="False"
+                                  ItemsSource="{Binding ElementName=Window, Path=Teachers, Mode=OneWay}"
+                                  AlternatingRowBackground="#F0F0F0"
+                                  AutoGenerateColumns="False"
+                                  CanUserReorderColumns="False"
+                                  SelectionMode="Single"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ПІБ"
+                                                    MinWidth="250"
+                                                    Binding="{Binding Path=FullName}" />
+                                <DataGridTextColumn Header="Академічний ранг"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=AcademicRankName}" />
+                                <DataGridTextColumn Header="Дата народження"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=BirthDate, Converter={StaticResource My:DateFormatConverter}}" />
+                                <DataGridTextColumn Header="Адреса"
+                                                    MinWidth="200"
+                                                    Binding="{Binding Path=Address}" />
+                                <DataGridTextColumn Header="Номер моб. телефону"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=MobilePhone}" />
+                                <DataGridTemplateColumn Header="Ім'я входу"
+                                                        CanUserResize="False">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Width="16"
+                                                   Height="16"
+                                                   Source="{Binding HasCredential, Converter={StaticResource My:BImagePathConverter}, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Column="1"
+                                BorderBrush="{Binding ElementName=StudentInfoDataGrid, Path=BorderBrush, Mode=OneTime}"
+                                BorderThickness="1"
+                                Margin="5,0,0,0">
+                            <StackPanel Margin="5,5,5,0"
+                                        IsEnabled="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:IsEnabledPathConverter2}}">
+                                <Button Content="Додати"
+                                        Padding="0,3,0,3"
+                                        x:Name="AddTeacherButton" />
+
+                                <Button Content="Редагувати"
+                                        Padding="0,3,0,3"
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ElementName=TeachersDataGrid, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource My:IsEnabledPathConverter}}"
+                                        x:Name="EditTeacherButton" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <!--Associated Subjects-->
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image Width="64" Height="64" Source="Resources/teacher-icon.png" />
+                        <TextBlock HorizontalAlignment="Center" FontSize="13" Foreground="White">Навантаження</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Background="#656565"
+                                Orientation="Horizontal"
+                                Margin="5,5,5,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="0">
+                                <TextBlock Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                           FontSize="20">
+                                    Навантаження
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1">
+                                <TextBlock Foreground="White"
+                                           Margin="50,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Інститут
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="60"
+                                          Margin="5,0,0,0"
+                                          x:Name="InstitutesComboBoxTab5"
+                                          ItemsSource="{Binding ElementName=InstitutesComboBox, Path=ItemsSource}" />
+                                <TextBlock Foreground="White"
+                                           Margin="25,0,0,0"
+                                           VerticalAlignment="Center">
+                                    Напрям
+                                </TextBlock>
+                                <ComboBox Height="20"
+                                          MinWidth="180"
+                                          Margin="5,0,0,0"
+                                          x:Name="CoursesComboBoxTab5" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="1"
+                          Margin="5,0,5,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="0"
+                                  x:Name="AssociatedSubjectsDataGrid"
+                                  GridLinesVisibility="None"
+                                  CanUserAddRows="False"
+                                  ItemsSource="{Binding ElementName=Window, Path=AssociatedSubjects, Mode=OneWay}"
+                                  AlternatingRowBackground="#F0F0F0"
+                                  AutoGenerateColumns="False"
+                                  CanUserReorderColumns="False"
+                                  SelectionMode="Single"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Група"
+                                                    MinWidth="180"
+                                                    Binding="{Binding Path=GroupName}" />
+                                <DataGridTextColumn Header="Назва дисципліни"
+                                                    MinWidth="300"
+                                                    Binding="{Binding Path=SubjectName}" />
+                                <DataGridTextColumn Header="Кредити"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=Credits}" />
+                                <DataGridTextColumn Header="Кваліф. рівень"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=QualificationLevelName}" />
+                                <DataGridTextColumn Header="Ф-ма навч."
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=StudyFormName}" />
+                                <DataGridTextColumn Header="ПІБ викладача"
+                                                    MinWidth="250"
+                                                    Binding="{Binding Path=TeacherFullName}" />
+                                <DataGridTextColumn Header="Академічний ранг"
+                                                    CanUserResize="False"
+                                                    Binding="{Binding Path=AcademicRankName}" />
+                                <DataGridTextColumn Header="Кафедра"
+                                                    MinWidth="300"
+                                                    Binding="{Binding Path=DepartmentName}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Column="1"
+                                BorderBrush="{Binding ElementName=StudentInfoDataGrid, Path=BorderBrush, Mode=OneTime}"
+                                BorderThickness="1"
+                                Margin="5,0,0,0">
+                            <StackPanel Margin="5,5,5,0"
+                                        IsEnabled="{Binding ElementName=Window, Path=ServerPermission, Converter={StaticResource My:IsEnabledPathConverter2}}">
+                                <Button Content="Додати"
+                                        Padding="0,3,0,3"
+                                        x:Name="AddAssociatedSubjectButton" />
+
+                                <Button Content="Редагувати"
+                                        Padding="0,3,0,3"
+                                        Margin="0,5,0,0"
+                                        IsEnabled="{Binding ElementName=AssociatedSubjectsDataGrid, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource My:IsEnabledPathConverter}}"
+                                        x:Name="EditAssociatedSubjectButton" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

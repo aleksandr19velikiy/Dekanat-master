@@ -1,0 +1,90 @@
+﻿<Window x:Class="Dekanat.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Створення нового користувача"
+        Height="450"
+        Width="400"
+        ResizeMode="NoResize"
+        FontFamily="Verdana"
+        WindowStartupLocation="CenterScreen"
+        x:Name="Window">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,20,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0">
+                    Ім'я входу:
+                </TextBlock>
+                <TextBox Width="150" Padding="3" MaxLength="25" x:Name="Username" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0">
+                    Пароль:
+                </TextBlock>
+                <PasswordBox Width="150" Padding="3" MaxLength="25" x:Name="Password1" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0">
+                    Підтвердження пароля:
+                </TextBlock>
+                <PasswordBox Width="150" Padding="3" MaxLength="25" x:Name="Password2" />
+            </StackPanel>
+
+            <GroupBox Header="Тип користувача"
+                      Margin="10,10,10,0">
+                <StackPanel Margin="10,5,0,5">
+                    <RadioButton Margin="0,0,0,10"
+                                 IsChecked="True"
+                                 x:Name="UserType1">
+                        Інспектор
+                    </RadioButton>
+                    <RadioButton x:Name="UserType2">Викладач</RadioButton>
+                </StackPanel>
+            </GroupBox>
+
+            <ListBox x:Name="TeachersList"
+                     Margin="10,10,10,0"
+                     Height="130"
+                     IsEnabled="{Binding ElementName=UserType2, Path=IsChecked, Mode=OneWay}" />
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,10,0,0"
+                        Visibility="{Binding ElementName=Window, Path=RegistrationInfoVisibility, Mode=OneWay}">
+                <Image Width="24"
+                       Height="24"
+                       Source="{Binding ElementName=Window, Path=RegistrationInfoImage, Mode=OneWay}" />
+                <TextBlock VerticalAlignment="Center"
+                           Margin="5,0,0,0"
+                           Text="{Binding ElementName=Window, Path=RegistrationInfoMessage, Mode=OneWay}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Separator />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,5,10,0">
+                <Button Width="70" x:Name="CreateUserButton" Margin="0,0,10,0">OK</Button>
+                <Button Width="70" x:Name="CloseButton">Закрити</Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

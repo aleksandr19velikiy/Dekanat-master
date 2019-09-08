@@ -1,0 +1,8 @@
+﻿<Application x:Class="DekanatForTeacher.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="AuthorizationWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

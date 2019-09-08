@@ -1,0 +1,109 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Dekanat.AddStudentWindow"
+        Title="Додати студента"
+        Height="450"
+        Width="400"
+        ResizeMode="NoResize"
+        FontFamily="Verdana"
+        WindowStartupLocation="CenterScreen"
+        x:Name="Window">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,20,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="Прізвище:"/></TextBlock>
+                <TextBox Width="150" Padding="3" MaxLength="50" x:Name="LastName" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="Ім'я:"/></TextBlock>
+                <TextBox Width="150" Padding="3" MaxLength="50" x:Name="FirstName" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="По батькові:"/></TextBlock>
+                <TextBox Width="150" Padding="3" MaxLength="50" x:Name="MiddleName" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="Дата народження:"/></TextBlock>
+                <DatePicker Width="150" x:Name="BirthDate" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="Адреса:"/></TextBlock>
+                <TextBox Width="150" Padding="3" MaxLength="50" x:Name="Address" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="Мобільний телефон (не об.):"/></TextBlock>
+                <TextBox Width="150" Padding="3" MaxLength="13" x:Name="MobilePhone" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0" d:IsHidden="True"><Run Text="Інститут:"/></TextBlock>
+                <ComboBox MinWidth="60"
+                          x:Name="InstitutesComboBox" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,10,0">
+                <TextBlock VerticalAlignment="Center"
+                           Margin="0,0,25,0"><Run Text="Група:"/></TextBlock>
+                <ComboBox MinWidth="180"
+                          x:Name="StudyGroupsComboBox" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,50,0,0"
+                        Visibility="{Binding InfoVisibility, ElementName=Window, Mode=OneWay}">
+                <Image Width="24"
+                       Height="24"
+                       Source="{Binding InfoImage, ElementName=Window, Mode=OneWay}" />
+                <TextBlock VerticalAlignment="Center"
+                           Margin="5,0,0,0"
+                           Text="{Binding InfoMessage, ElementName=Window, Mode=OneWay}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Separator />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,5,10,0">
+                <Button Width="70" x:Name="AddStudentButton" Margin="0,0,10,0" Content="OK"/>
+                <Button Width="70" x:Name="CloseButton" Content="Закрити"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

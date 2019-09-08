@@ -1,0 +1,1410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbStudentsFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicRanks">
+          <Key>
+            <PropertyRef Name="AcademicRankId" />
+          </Key>
+          <Property Name="AcademicRankId" Type="int" Nullable="false" />
+          <Property Name="AcademicRankName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssociatedSubjects">
+          <Key>
+            <PropertyRef Name="AssociatedSubjectId" />
+          </Key>
+          <Property Name="AssociatedSubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Teacher" Type="int" Nullable="false" />
+          <Property Name="SubjectInfo" Type="int" Nullable="false" />
+          <Property Name="StudyGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Credentials">
+          <Key>
+            <PropertyRef Name="CredentialId" />
+          </Key>
+          <Property Name="CredentialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Teacher" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeletedMarks">
+          <Key>
+            <PropertyRef Name="MarkId" />
+          </Key>
+          <Property Name="MarkId" Type="int" Nullable="false" />
+          <Property Name="Student" Type="int" Nullable="false" />
+          <Property Name="SubjectInfo" Type="int" Nullable="false" />
+          <Property Name="MarkDate" Type="datetime" />
+          <Property Name="Mark" Type="int" />
+          <Property Name="MarkType" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="DeletedStudents">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="13" />
+          <Property Name="StudyGroup" Type="int" Nullable="false" />
+          <Property Name="DeletedBy" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DateOfDeleting" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Institute" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupNum" Type="int" Nullable="false" />
+          <Property Name="GroupQuantity" Type="int" Nullable="false" />
+          <Property Name="Elder" Type="int" />
+          <Property Name="Course" Type="int" Nullable="false" />
+          <Property Name="QualificationLevel" Type="int" Nullable="false" />
+          <Property Name="StudyForm" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Institutes">
+          <Key>
+            <PropertyRef Name="InstituteId" />
+          </Key>
+          <Property Name="InstituteId" Type="int" Nullable="false" />
+          <Property Name="InstituteName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="InstituteSName" Type="nvarchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="MarkId" />
+          </Key>
+          <Property Name="MarkId" Type="int" Nullable="false" />
+          <Property Name="Student" Type="int" Nullable="false" />
+          <Property Name="SubjectInfo" Type="int" Nullable="false" />
+          <Property Name="MarkDate" Type="datetime" />
+          <Property Name="Mark" Type="int" />
+          <Property Name="MarkType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarkTypes">
+          <Key>
+            <PropertyRef Name="MarkTypeId" />
+          </Key>
+          <Property Name="MarkTypeId" Type="int" Nullable="false" />
+          <Property Name="MarkTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QualificationLevels">
+          <Key>
+            <PropertyRef Name="QualificationLevelId" />
+          </Key>
+          <Property Name="QualificationLevelId" Type="int" Nullable="false" />
+          <Property Name="QualificationLevelName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="13" />
+          <Property Name="StudyGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudyForms">
+          <Key>
+            <PropertyRef Name="StudyFormId" />
+          </Key>
+          <Property Name="StudyFormId" Type="int" Nullable="false" />
+          <Property Name="StudyFormName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectInfo">
+          <Key>
+            <PropertyRef Name="SubjectInfoId" />
+          </Key>
+          <Property Name="SubjectInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Credits" Type="decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="QualificationLevel" Type="int" Nullable="false" />
+          <Property Name="StudyForm" Type="int" Nullable="false" />
+          <Property Name="Course" Type="int" Nullable="false" />
+          <Property Name="SubjectInfoDate" Type="datetime" Nullable="false" />
+          <Property Name="SubjectName" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectNames">
+          <Key>
+            <PropertyRef Name="SubjectNameId" />
+          </Key>
+          <Property Name="SubjectNameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobilePhone" Type="nvarchar" MaxLength="13" />
+          <Property Name="Department" Type="int" Nullable="false" />
+          <Property Name="AcademicRank" Type="int" Nullable="false" />
+          <Property Name="HasCredential" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AssociatedSubjects_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="AssociatedSubjects" Type="Self.AssociatedSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="AssociatedSubjects">
+              <PropertyRef Name="StudyGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociatedSubjects_SubjectInfo">
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="1" />
+          <End Role="AssociatedSubjects" Type="Self.AssociatedSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectInfo">
+              <PropertyRef Name="SubjectInfoId" />
+            </Principal>
+            <Dependent Role="AssociatedSubjects">
+              <PropertyRef Name="SubjectInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociatedSubjects_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="AssociatedSubjects" Type="Self.AssociatedSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="AssociatedSubjects">
+              <PropertyRef Name="Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Courses_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credentials_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="Credentials">
+              <PropertyRef Name="Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Departments_Institutes">
+          <End Role="Institutes" Type="Self.Institutes" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institutes">
+              <PropertyRef Name="InstituteId" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="Institute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_QualificationLevels">
+          <End Role="QualificationLevels" Type="Self.QualificationLevels" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualificationLevels">
+              <PropertyRef Name="QualificationLevelId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="QualificationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Elder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_StudyForms">
+          <End Role="StudyForms" Type="Self.StudyForms" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyForms">
+              <PropertyRef Name="StudyFormId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="StudyForm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_MarkTypes">
+          <End Role="MarkTypes" Type="Self.MarkTypes" Multiplicity="1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarkTypes">
+              <PropertyRef Name="MarkTypeId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="MarkType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_SubjectInfo">
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectInfo">
+              <PropertyRef Name="SubjectInfoId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="SubjectInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="StudyGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_QualificationLevels">
+          <End Role="QualificationLevels" Type="Self.QualificationLevels" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualificationLevels">
+              <PropertyRef Name="QualificationLevelId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="QualificationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_StudyForms">
+          <End Role="StudyForms" Type="Self.StudyForms" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyForms">
+              <PropertyRef Name="StudyFormId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="StudyForm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_SubjectNames">
+          <End Role="SubjectNames" Type="Self.SubjectNames" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectNames">
+              <PropertyRef Name="SubjectNameId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="SubjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_AcademicRanks">
+          <End Role="AcademicRanks" Type="Self.AcademicRanks" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicRanks">
+              <PropertyRef Name="AcademicRankId" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="AcademicRank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="dbStudentsFinalModelStoreContainer">
+          <EntitySet Name="AcademicRanks" EntityType="Self.AcademicRanks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssociatedSubjects" EntityType="Self.AssociatedSubjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credentials" EntityType="Self.Credentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeletedMarks" EntityType="Self.DeletedMarks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeletedStudents" EntityType="Self.DeletedStudents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Institutes" EntityType="Self.Institutes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarkTypes" EntityType="Self.MarkTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QualificationLevels" EntityType="Self.QualificationLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudyForms" EntityType="Self.StudyForms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectInfo" EntityType="Self.SubjectInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectNames" EntityType="Self.SubjectNames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AssociatedSubjects_Groups" Association="Self.FK_AssociatedSubjects_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="AssociatedSubjects" EntitySet="AssociatedSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociatedSubjects_SubjectInfo" Association="Self.FK_AssociatedSubjects_SubjectInfo">
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+            <End Role="AssociatedSubjects" EntitySet="AssociatedSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociatedSubjects_Teachers" Association="Self.FK_AssociatedSubjects_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="AssociatedSubjects" EntitySet="AssociatedSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courses_Departments" Association="Self.FK_Courses_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credentials_Teachers" Association="Self.FK_Credentials_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Credentials" EntitySet="Credentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Departments_Institutes" Association="Self.FK_Departments_Institutes">
+            <End Role="Institutes" EntitySet="Institutes" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Courses" Association="Self.FK_Groups_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_QualificationLevels" Association="Self.FK_Groups_QualificationLevels">
+            <End Role="QualificationLevels" EntitySet="QualificationLevels" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Students" Association="Self.FK_Groups_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_StudyForms" Association="Self.FK_Groups_StudyForms">
+            <End Role="StudyForms" EntitySet="StudyForms" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_MarkTypes" Association="Self.FK_Marks_MarkTypes">
+            <End Role="MarkTypes" EntitySet="MarkTypes" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Students" Association="Self.FK_Marks_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_SubjectInfo" Association="Self.FK_Marks_SubjectInfo">
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Groups" Association="Self.FK_Students_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_Courses" Association="Self.FK_SubjectInfo_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_QualificationLevels" Association="Self.FK_SubjectInfo_QualificationLevels">
+            <End Role="QualificationLevels" EntitySet="QualificationLevels" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_StudyForms" Association="Self.FK_SubjectInfo_StudyForms">
+            <End Role="StudyForms" EntitySet="StudyForms" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_SubjectNames" Association="Self.FK_SubjectInfo_SubjectNames">
+            <End Role="SubjectNames" EntitySet="SubjectNames" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_AcademicRanks" Association="Self.FK_Teachers_AcademicRanks">
+            <End Role="AcademicRanks" EntitySet="AcademicRanks" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Departments" Association="Self.FK_Teachers_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbStudentsFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcademicRanks">
+          <Key>
+            <PropertyRef Name="AcademicRankId" />
+          </Key>
+          <Property Name="AcademicRankId" Type="Int32" Nullable="false" />
+          <Property Name="AcademicRankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_AcademicRanks" FromRole="AcademicRanks" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="AssociatedSubjects">
+          <Key>
+            <PropertyRef Name="AssociatedSubjectId" />
+          </Key>
+          <Property Name="AssociatedSubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Teacher" Type="Int32" Nullable="false" />
+          <Property Name="SubjectInfo" Type="Int32" Nullable="false" />
+          <Property Name="StudyGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_AssociatedSubjects_Groups" FromRole="AssociatedSubjects" ToRole="Groups" />
+          <NavigationProperty Name="SubjectInfo1" Relationship="Self.FK_AssociatedSubjects_SubjectInfo" FromRole="AssociatedSubjects" ToRole="SubjectInfo" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_AssociatedSubjects_Teachers" FromRole="AssociatedSubjects" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Courses_Departments" FromRole="Courses" ToRole="Departments" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Courses" FromRole="Courses" ToRole="Groups" />
+          <NavigationProperty Name="SubjectInfo" Relationship="Self.FK_SubjectInfo_Courses" FromRole="Courses" ToRole="SubjectInfo" />
+        </EntityType>
+        <EntityType Name="Credentials">
+          <Key>
+            <PropertyRef Name="CredentialId" />
+          </Key>
+          <Property Name="CredentialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Teacher" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Credentials_Teachers" FromRole="Credentials" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="DeletedMarks">
+          <Key>
+            <PropertyRef Name="MarkId" />
+          </Key>
+          <Property Name="MarkId" Type="Int32" Nullable="false" />
+          <Property Name="Student" Type="Int32" Nullable="false" />
+          <Property Name="SubjectInfo" Type="Int32" Nullable="false" />
+          <Property Name="MarkDate" Type="DateTime" Precision="3" />
+          <Property Name="Mark" Type="Int32" />
+          <Property Name="MarkType" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DeletedStudents">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="StudyGroup" Type="Int32" Nullable="false" />
+          <Property Name="DeletedBy" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfDeleting" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Institute" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Departments" FromRole="Departments" ToRole="Courses" />
+          <NavigationProperty Name="Institutes" Relationship="Self.FK_Departments_Institutes" FromRole="Departments" ToRole="Institutes" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_Departments" FromRole="Departments" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupNum" Type="Int32" Nullable="false" />
+          <Property Name="GroupQuantity" Type="Int32" Nullable="false" />
+          <Property Name="Elder" Type="Int32" />
+          <Property Name="Course" Type="Int32" Nullable="false" />
+          <Property Name="QualificationLevel" Type="Int32" Nullable="false" />
+          <Property Name="StudyForm" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AssociatedSubjects" Relationship="Self.FK_AssociatedSubjects_Groups" FromRole="Groups" ToRole="AssociatedSubjects" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_Groups_Courses" FromRole="Groups" ToRole="Courses" />
+          <NavigationProperty Name="QualificationLevels" Relationship="Self.FK_Groups_QualificationLevels" FromRole="Groups" ToRole="QualificationLevels" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Groups_Students" FromRole="Groups" ToRole="Students" />
+          <NavigationProperty Name="StudyForms" Relationship="Self.FK_Groups_StudyForms" FromRole="Groups" ToRole="StudyForms" />
+          <NavigationProperty Name="Students1" Relationship="Self.FK_Students_Groups" FromRole="Groups" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Institutes">
+          <Key>
+            <PropertyRef Name="InstituteId" />
+          </Key>
+          <Property Name="InstituteId" Type="Int32" Nullable="false" />
+          <Property Name="InstituteName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InstituteSName" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Institutes" FromRole="Institutes" ToRole="Departments" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="MarkId" />
+          </Key>
+          <Property Name="MarkId" Type="Int32" Nullable="false" />
+          <Property Name="Student" Type="Int32" Nullable="false" />
+          <Property Name="SubjectInfo" Type="Int32" Nullable="false" />
+          <Property Name="MarkDate" Type="DateTime" Precision="3" />
+          <Property Name="Mark" Type="Int32" />
+          <Property Name="MarkType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MarkTypes" Relationship="Self.FK_Marks_MarkTypes" FromRole="Marks" ToRole="MarkTypes" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Marks_Students" FromRole="Marks" ToRole="Students" />
+          <NavigationProperty Name="SubjectInfo1" Relationship="Self.FK_Marks_SubjectInfo" FromRole="Marks" ToRole="SubjectInfo" />
+        </EntityType>
+        <EntityType Name="MarkTypes">
+          <Key>
+            <PropertyRef Name="MarkTypeId" />
+          </Key>
+          <Property Name="MarkTypeId" Type="Int32" Nullable="false" />
+          <Property Name="MarkTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Marks" Relationship="Self.FK_Marks_MarkTypes" FromRole="MarkTypes" ToRole="Marks" />
+        </EntityType>
+        <EntityType Name="QualificationLevels">
+          <Key>
+            <PropertyRef Name="QualificationLevelId" />
+          </Key>
+          <Property Name="QualificationLevelId" Type="Int32" Nullable="false" />
+          <Property Name="QualificationLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_QualificationLevels" FromRole="QualificationLevels" ToRole="Groups" />
+          <NavigationProperty Name="SubjectInfo" Relationship="Self.FK_SubjectInfo_QualificationLevels" FromRole="QualificationLevels" ToRole="SubjectInfo" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="StudyGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Students" FromRole="Students" ToRole="Groups" />
+          <NavigationProperty Name="Groups1" Relationship="Self.FK_Students_Groups" FromRole="Students" ToRole="Groups" />
+          <NavigationProperty Name="Marks" Relationship="Self.FK_Marks_Students" FromRole="Students" ToRole="Marks" />
+        </EntityType>
+        <EntityType Name="StudyForms">
+          <Key>
+            <PropertyRef Name="StudyFormId" />
+          </Key>
+          <Property Name="StudyFormId" Type="Int32" Nullable="false" />
+          <Property Name="StudyFormName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_StudyForms" FromRole="StudyForms" ToRole="Groups" />
+          <NavigationProperty Name="SubjectInfo" Relationship="Self.FK_SubjectInfo_StudyForms" FromRole="StudyForms" ToRole="SubjectInfo" />
+        </EntityType>
+        <EntityType Name="SubjectInfo">
+          <Key>
+            <PropertyRef Name="SubjectInfoId" />
+          </Key>
+          <Property Name="SubjectInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Credits" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <Property Name="QualificationLevel" Type="Int32" Nullable="false" />
+          <Property Name="StudyForm" Type="Int32" Nullable="false" />
+          <Property Name="Course" Type="Int32" Nullable="false" />
+          <Property Name="SubjectInfoDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SubjectName" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AssociatedSubjects" Relationship="Self.FK_AssociatedSubjects_SubjectInfo" FromRole="SubjectInfo" ToRole="AssociatedSubjects" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_SubjectInfo_Courses" FromRole="SubjectInfo" ToRole="Courses" />
+          <NavigationProperty Name="Marks" Relationship="Self.FK_Marks_SubjectInfo" FromRole="SubjectInfo" ToRole="Marks" />
+          <NavigationProperty Name="QualificationLevels" Relationship="Self.FK_SubjectInfo_QualificationLevels" FromRole="SubjectInfo" ToRole="QualificationLevels" />
+          <NavigationProperty Name="StudyForms" Relationship="Self.FK_SubjectInfo_StudyForms" FromRole="SubjectInfo" ToRole="StudyForms" />
+          <NavigationProperty Name="SubjectNames" Relationship="Self.FK_SubjectInfo_SubjectNames" FromRole="SubjectInfo" ToRole="SubjectNames" />
+        </EntityType>
+        <EntityType Name="SubjectNames">
+          <Key>
+            <PropertyRef Name="SubjectNameId" />
+          </Key>
+          <Property Name="SubjectNameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SubjectInfo" Relationship="Self.FK_SubjectInfo_SubjectNames" FromRole="SubjectNames" ToRole="SubjectInfo" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="Int32" Nullable="false" />
+          <Property Name="AcademicRank" Type="Int32" Nullable="false" />
+          <Property Name="HasCredential" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AcademicRanks" Relationship="Self.FK_Teachers_AcademicRanks" FromRole="Teachers" ToRole="AcademicRanks" />
+          <NavigationProperty Name="AssociatedSubjects" Relationship="Self.FK_AssociatedSubjects_Teachers" FromRole="Teachers" ToRole="AssociatedSubjects" />
+          <NavigationProperty Name="Credentials" Relationship="Self.FK_Credentials_Teachers" FromRole="Teachers" ToRole="Credentials" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Teachers_Departments" FromRole="Teachers" ToRole="Departments" />
+        </EntityType>
+        <Association Name="FK_Teachers_AcademicRanks">
+          <End Role="AcademicRanks" Type="Self.AcademicRanks" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademicRanks">
+              <PropertyRef Name="AcademicRankId" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="AcademicRank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociatedSubjects_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="AssociatedSubjects" Type="Self.AssociatedSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="AssociatedSubjects">
+              <PropertyRef Name="StudyGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociatedSubjects_SubjectInfo">
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="1" />
+          <End Role="AssociatedSubjects" Type="Self.AssociatedSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectInfo">
+              <PropertyRef Name="SubjectInfoId" />
+            </Principal>
+            <Dependent Role="AssociatedSubjects">
+              <PropertyRef Name="SubjectInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssociatedSubjects_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="AssociatedSubjects" Type="Self.AssociatedSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="AssociatedSubjects">
+              <PropertyRef Name="Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Courses_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Credentials_Teachers">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="Credentials">
+              <PropertyRef Name="Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Departments_Institutes">
+          <End Role="Institutes" Type="Self.Institutes" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institutes">
+              <PropertyRef Name="InstituteId" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="Institute" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="Department" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_QualificationLevels">
+          <End Role="QualificationLevels" Type="Self.QualificationLevels" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualificationLevels">
+              <PropertyRef Name="QualificationLevelId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="QualificationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Elder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_StudyForms">
+          <End Role="StudyForms" Type="Self.StudyForms" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyForms">
+              <PropertyRef Name="StudyFormId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="StudyForm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="StudyGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_MarkTypes">
+          <End Role="MarkTypes" Type="Self.MarkTypes" Multiplicity="1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarkTypes">
+              <PropertyRef Name="MarkTypeId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="MarkType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marks_SubjectInfo">
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectInfo">
+              <PropertyRef Name="SubjectInfoId" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="SubjectInfo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_QualificationLevels">
+          <End Role="QualificationLevels" Type="Self.QualificationLevels" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QualificationLevels">
+              <PropertyRef Name="QualificationLevelId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="QualificationLevel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_StudyForms">
+          <End Role="StudyForms" Type="Self.StudyForms" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudyForms">
+              <PropertyRef Name="StudyFormId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="StudyForm" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectInfo_SubjectNames">
+          <End Role="SubjectNames" Type="Self.SubjectNames" Multiplicity="1" />
+          <End Role="SubjectInfo" Type="Self.SubjectInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectNames">
+              <PropertyRef Name="SubjectNameId" />
+            </Principal>
+            <Dependent Role="SubjectInfo">
+              <PropertyRef Name="SubjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbStudentsFinalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcademicRanks" EntityType="Self.AcademicRanks" />
+          <EntitySet Name="AssociatedSubjects" EntityType="Self.AssociatedSubjects" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" />
+          <EntitySet Name="Credentials" EntityType="Self.Credentials" />
+          <EntitySet Name="DeletedMarks" EntityType="Self.DeletedMarks" />
+          <EntitySet Name="DeletedStudents" EntityType="Self.DeletedStudents" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="Institutes" EntityType="Self.Institutes" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" />
+          <EntitySet Name="MarkTypes" EntityType="Self.MarkTypes" />
+          <EntitySet Name="QualificationLevels" EntityType="Self.QualificationLevels" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="StudyForms" EntityType="Self.StudyForms" />
+          <EntitySet Name="SubjectInfo" EntityType="Self.SubjectInfo" />
+          <EntitySet Name="SubjectNames" EntityType="Self.SubjectNames" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <AssociationSet Name="FK_Teachers_AcademicRanks" Association="Self.FK_Teachers_AcademicRanks">
+            <End Role="AcademicRanks" EntitySet="AcademicRanks" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociatedSubjects_Groups" Association="Self.FK_AssociatedSubjects_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="AssociatedSubjects" EntitySet="AssociatedSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociatedSubjects_SubjectInfo" Association="Self.FK_AssociatedSubjects_SubjectInfo">
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+            <End Role="AssociatedSubjects" EntitySet="AssociatedSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssociatedSubjects_Teachers" Association="Self.FK_AssociatedSubjects_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="AssociatedSubjects" EntitySet="AssociatedSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courses_Departments" Association="Self.FK_Courses_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Courses" Association="Self.FK_Groups_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_Courses" Association="Self.FK_SubjectInfo_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Credentials_Teachers" Association="Self.FK_Credentials_Teachers">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="Credentials" EntitySet="Credentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Departments_Institutes" Association="Self.FK_Departments_Institutes">
+            <End Role="Institutes" EntitySet="Institutes" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Departments" Association="Self.FK_Teachers_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_QualificationLevels" Association="Self.FK_Groups_QualificationLevels">
+            <End Role="QualificationLevels" EntitySet="QualificationLevels" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Students" Association="Self.FK_Groups_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_StudyForms" Association="Self.FK_Groups_StudyForms">
+            <End Role="StudyForms" EntitySet="StudyForms" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Groups" Association="Self.FK_Students_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_MarkTypes" Association="Self.FK_Marks_MarkTypes">
+            <End Role="MarkTypes" EntitySet="MarkTypes" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_Students" Association="Self.FK_Marks_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marks_SubjectInfo" Association="Self.FK_Marks_SubjectInfo">
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_QualificationLevels" Association="Self.FK_SubjectInfo_QualificationLevels">
+            <End Role="QualificationLevels" EntitySet="QualificationLevels" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_StudyForms" Association="Self.FK_SubjectInfo_StudyForms">
+            <End Role="StudyForms" EntitySet="StudyForms" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectInfo_SubjectNames" Association="Self.FK_SubjectInfo_SubjectNames">
+            <End Role="SubjectNames" EntitySet="SubjectNames" />
+            <End Role="SubjectInfo" EntitySet="SubjectInfo" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbStudentsFinalModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbStudentsFinalModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbStudentsFinalModelStoreContainer" CdmEntityContainer="dbStudentsFinalEntities">
+    <EntitySetMapping Name="AcademicRanks">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.AcademicRanks)">
+        <MappingFragment StoreEntitySet="AcademicRanks">
+          <ScalarProperty Name="AcademicRankId" ColumnName="AcademicRankId" />
+          <ScalarProperty Name="AcademicRankName" ColumnName="AcademicRankName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssociatedSubjects">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.AssociatedSubjects)">
+        <MappingFragment StoreEntitySet="AssociatedSubjects">
+          <ScalarProperty Name="AssociatedSubjectId" ColumnName="AssociatedSubjectId" />
+          <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+          <ScalarProperty Name="SubjectInfo" ColumnName="SubjectInfo" />
+          <ScalarProperty Name="StudyGroup" ColumnName="StudyGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Courses)">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Credentials">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Credentials)">
+        <MappingFragment StoreEntitySet="Credentials">
+          <ScalarProperty Name="CredentialId" ColumnName="CredentialId" />
+          <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeletedMarks">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.DeletedMarks)">
+        <MappingFragment StoreEntitySet="DeletedMarks">
+          <ScalarProperty Name="MarkId" ColumnName="MarkId" />
+          <ScalarProperty Name="Student" ColumnName="Student" />
+          <ScalarProperty Name="SubjectInfo" ColumnName="SubjectInfo" />
+          <ScalarProperty Name="MarkDate" ColumnName="MarkDate" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="MarkType" ColumnName="MarkType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeletedStudents">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.DeletedStudents)">
+        <MappingFragment StoreEntitySet="DeletedStudents">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="StudyGroup" ColumnName="StudyGroup" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="DateOfDeleting" ColumnName="DateOfDeleting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Departments)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="Institute" ColumnName="Institute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Groups)">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupNum" ColumnName="GroupNum" />
+          <ScalarProperty Name="GroupQuantity" ColumnName="GroupQuantity" />
+          <ScalarProperty Name="Elder" ColumnName="Elder" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="QualificationLevel" ColumnName="QualificationLevel" />
+          <ScalarProperty Name="StudyForm" ColumnName="StudyForm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Institutes">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Institutes)">
+        <MappingFragment StoreEntitySet="Institutes">
+          <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+          <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
+          <ScalarProperty Name="InstituteSName" ColumnName="InstituteSName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marks">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Marks)">
+        <MappingFragment StoreEntitySet="Marks">
+          <ScalarProperty Name="MarkId" ColumnName="MarkId" />
+          <ScalarProperty Name="Student" ColumnName="Student" />
+          <ScalarProperty Name="SubjectInfo" ColumnName="SubjectInfo" />
+          <ScalarProperty Name="MarkDate" ColumnName="MarkDate" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="MarkType" ColumnName="MarkType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarkTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.MarkTypes)">
+        <MappingFragment StoreEntitySet="MarkTypes">
+          <ScalarProperty Name="MarkTypeId" ColumnName="MarkTypeId" />
+          <ScalarProperty Name="MarkTypeName" ColumnName="MarkTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QualificationLevels">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.QualificationLevels)">
+        <MappingFragment StoreEntitySet="QualificationLevels">
+          <ScalarProperty Name="QualificationLevelId" ColumnName="QualificationLevelId" />
+          <ScalarProperty Name="QualificationLevelName" ColumnName="QualificationLevelName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Students)">
+        <MappingFragment StoreEntitySet="Students">
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="StudyGroup" ColumnName="StudyGroup" />
+        </MappingFragment>
+              <MappingFragment StoreEntitySet="DeletedMarks" />
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudyForms">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.StudyForms)">
+        <MappingFragment StoreEntitySet="StudyForms">
+          <ScalarProperty Name="StudyFormId" ColumnName="StudyFormId" />
+          <ScalarProperty Name="StudyFormName" ColumnName="StudyFormName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.SubjectInfo)">
+        <MappingFragment StoreEntitySet="SubjectInfo">
+          <ScalarProperty Name="SubjectInfoId" ColumnName="SubjectInfoId" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+          <ScalarProperty Name="QualificationLevel" ColumnName="QualificationLevel" />
+          <ScalarProperty Name="StudyForm" ColumnName="StudyForm" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="SubjectInfoDate" ColumnName="SubjectInfoDate" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectNames">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.SubjectNames)">
+        <MappingFragment StoreEntitySet="SubjectNames">
+          <ScalarProperty Name="SubjectNameId" ColumnName="SubjectNameId" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="IsTypeOf(dbStudentsFinalModel.Teachers)">
+        <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="AcademicRank" ColumnName="AcademicRank" />
+          <ScalarProperty Name="HasCredential" ColumnName="HasCredential" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="dbStudentsFinalModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="dbStudentsFinalModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="dbStudentsFinalModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbStudentsFinalModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbStudentsFinalModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbStudentsFinalModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbStudentsFinalModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbStudentsFinalModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbStudentsFinalModel.Store.sp_upgraddiagrams" />
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
